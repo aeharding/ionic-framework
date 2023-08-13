@@ -20,7 +20,7 @@ export const createSwipeBackGesture = (
    * to go back gesture should proceed.
    */
   const isAtEdge = (detail: GestureDetail) => {
-    const threshold = 50;
+    const threshold = localStorage.getItem('FULL_SWIPE_BACK') ? win.innerWidth : 60;
     const { startX } = detail;
 
     if (rtl) {
@@ -70,7 +70,7 @@ export const createSwipeBackGesture = (
     let realDur = 0;
     if (missingDistance > 5) {
       const dur = missingDistance / Math.abs(velocity);
-      realDur = Math.min(dur, 540);
+      realDur = Math.min(dur, 200);
     }
 
     onEndHandler(shouldComplete, stepValue <= 0 ? 0.01 : clamp(0, stepValue, 0.9999), realDur);
