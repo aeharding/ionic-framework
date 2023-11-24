@@ -30,6 +30,8 @@ import { mdLeaveAnimation } from './animations/md.leave';
 
 /**
  * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
+ *
+ * @slot - Content is placed before buttons within the action sheet container
  */
 @Component({
   tag: 'ion-action-sheet',
@@ -372,6 +374,8 @@ export class ActionSheet implements ComponentInterface, OverlayInterface {
 
         <div class="action-sheet-wrapper ion-overlay-wrapper" ref={(el) => (this.wrapperEl = el)}>
           <div class="action-sheet-container">
+            <slot></slot>
+
             <div class="action-sheet-group" ref={(el) => (this.groupEl = el)}>
               {header !== undefined && (
                 <div
