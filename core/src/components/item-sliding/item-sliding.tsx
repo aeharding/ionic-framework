@@ -356,6 +356,8 @@ export class ItemSliding implements ComponentInterface {
       openAmount = optsWidth + (openAmount - optsWidth) * ELASTIC_FACTOR;
     }
 
+    if (openAmount === 0) return;
+
     this.setOpenAmount(openAmount, false);
   }
 
