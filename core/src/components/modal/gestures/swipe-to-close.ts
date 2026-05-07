@@ -301,6 +301,7 @@ export const createSwipeToCloseGesture = (
       velocityY: detail.velocityY,
       progress: calculateProgress(el, detail.deltaY),
       isDismissing,
+      snapBreakpoint: shouldComplete ? 0 : 1,
     };
 
     onDragEnd(eventDetail);
