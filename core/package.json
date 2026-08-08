@@ -1,5 +1,5 @@
 {
-  "name": "@ionic/core",
+  "name": "voyager-ionic-core",
   "version": "9.0.0",
   "description": "Base components for Ionic",
   "engines": {
