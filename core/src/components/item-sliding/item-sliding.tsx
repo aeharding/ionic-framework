@@ -74,6 +74,16 @@ export class ItemSliding implements ComponentInterface {
   async connectedCallback() {
     const { el } = this;
 
+    /**
+     * React 19 assigns custom element properties after the element is
+     * connected (later in the same task as insertion). Wait a microtask so
+     * ion-item-options `side` props are applied before updateOptions reads
+     * them. Ionic 8's lazy-loaded build deferred this work past prop
+     * assignment implicitly.
+     */
+    await Promise.resolve();
+    if (!el.isConnected) return;
+
     this.item = el.querySelector('ion-item');
     this.contentEl = findClosestIonContent(el);
 

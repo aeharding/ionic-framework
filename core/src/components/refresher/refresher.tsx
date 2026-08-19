@@ -513,6 +513,14 @@ export class Refresher implements ComponentInterface {
   }
 
   async connectedCallback() {
+    /**
+     * React 19 assigns custom element attributes/properties after the
+     * element is connected (later in the same task as insertion). Wait a
+     * microtask so `slot` is applied before it is validated below.
+     */
+    await Promise.resolve();
+    if (!this.el.isConnected) return;
+
     if (this.el.getAttribute('slot') !== 'fixed') {
       printIonError('[ion-refresher] - Make sure you use: <ion-refresher slot="fixed">');
       return;
